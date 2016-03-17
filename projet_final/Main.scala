@@ -13,7 +13,6 @@ object Main {
       else arbreRetour
     }
     ABanimalToFichier("Source", jeu(arbreAnimal,Source.stdin.getLines))
-    println()
-    println("Au revoir !")
+    println("\nAu revoir !")
   }
 }

@@ -16,6 +16,7 @@ def fichierToABanimal(nomf:String):ABanimal = {
 							(Question(t.split(":")(1),oui,non),l3)
 				}
 				case t::q => (Animal(t),q)
+				case Nil => throw new Exception("Erreur lors de la conversion : fichier incomplet")
 		}
 		convert(l)._1
 	}
