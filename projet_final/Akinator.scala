@@ -41,16 +41,22 @@ def fichierToABanimal(nomf:String):ABanimal = {
 			case Question(t,oui,non) => {
 				println(t)
 				val rep =/*readLine()*/ it.next()
-				if (rep.equals("o")){
-					aux(oui)
-				} else {
-					aux(non)
+				if (rep.equals("o")) aux(oui)
+				else if(rep.equals("n"))aux(non)
+				else {
+					println("Entrez 'o' ou 'n' !")
+					aux(a)
 				}
 			}
 			case Animal(t) => {
 				println("Pensez-vous à l'animal "+t+" ?")
 				val rep = /*readLine()*/it.next()
-				rep.equals("o")
+				if (rep.equals("o")) true
+				else if (rep.equals("n")) false
+				else {
+					println("Entrez 'o' ou 'n' !")
+					aux(a)
+				}
 			}
 			}
 			aux(a)
@@ -62,16 +68,21 @@ def fichierToABanimal(nomf:String):ABanimal = {
 			case Question(t,oui,non) => {
 				println(t)
 				val rep = it.next()
-				if (rep.equals("o")){
-					aux(oui,adjqlis(l,rep))
-				} else {
-					aux(non,adjqlis(l,rep))
+				if (rep.equals("o")) aux(oui,adjqlis(l,rep))
+				else if (rep.equals("n")) aux(non,adjqlis(l,rep))
+				else {
+					println("Entrez 'o' ou 'n' !")
+					aux(a,l)
 				}
 			}
 			case Animal(t) => {
 				println("Pensez-vous à l'animal "+t+" ?")
 				val rep = it.next()
-				adjqlis(l,rep)
+				if (rep.equals("o") || rep.equals("n")) adjqlis(l,rep)
+				else {
+					println("Entrez 'o' ou 'n' !")
+					aux(a,l)
+				}
 			}
 			}
 			val l = List()
@@ -91,8 +102,11 @@ def fichierToABanimal(nomf:String):ABanimal = {
 				val rep = it.next()
 				if (rep.equals("o")){
 					Question(t,aux(oui),non)
-				} else {
+				} else if (rep.equals("n")){
 					Question(t,oui,aux(non))
+				} else {
+				  println("Entrez 'o' ou 'n' !")
+				  aux(a)
 				}
 			}
 			case Animal(t) => {
@@ -102,16 +116,25 @@ def fichierToABanimal(nomf:String):ABanimal = {
 					println("J'ai gagné")
 					a
 				}
-				else {
+				else if (rep.equals("n")) {
 					println("J'ai perdu - quelle était la bonne réponse ?")
 					val nAnimal = it.next()
 					println("Quelle question permet de différencier "+nAnimal+" et "+t+" ?")
 					val nQuestion = it.next()
 					println("Quelle est la réponse pour cette question pour "+nAnimal+" ?")
-					val nRep = it.next()
+					def boucleVerif(res:String):String = res match {
+					  case ret if (res.equals("o")||res.equals("n")) => ret
+					  case _ => {
+					    println("Entrez 'o' ou 'n' !")
+					    boucleVerif(it.next())
+					  }
+					}
+					val nRep = boucleVerif(it.next())
 					if(nRep.equals("o")) Question(nQuestion,Animal(nAnimal),Animal(t))
-					else if(nRep.equals("n")) Question(nQuestion,Animal(t),Animal(nAnimal))
-					else throw new Exception("Erreur : entrez 'o' ou 'n'")
+					else Question(nQuestion,Animal(t),Animal(nAnimal))
+				} else {
+				  println("Entrez 'o' ou 'n' !")
+				  aux(a)
 				}
 			}
 			}
@@ -130,13 +153,21 @@ def fichierToABanimal(nomf:String):ABanimal = {
 					val trouve = aux(oui)
 							if(!trouve) aux(non)
 							else trouve
-				} else throw new Exception("Erreur: entrez 'o', 'n' ou 'x'")
+				} else {
+				  println("Entrez 'o', 'n' ou 'x' !")
+				  aux(a)
+				}
 
 			}
 			case Animal(t) => {
 				println("Pensez-vous à l'animal "+t+" ?")
 				val rep = /*readLine()*/it.next()
-				rep.equals("o")
+				if (rep.equals("o")) true
+				else if (rep.equals("n")) false
+				else {
+				  println("Entrez 'o' ou 'n' !")
+				  aux(a)
+				}
 			}
 			}
 			aux(a)
