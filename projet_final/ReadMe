@@ -1,0 +1,7 @@
+Projet programmation fonctionnelle : Akinator
+Par Justin NOEL et Bruno SINTEFF
+Pour lancer l'application avec l'interpréteur scala sous Linux, lancer les commandes dans cet ordre
+(il faut être dans le même répertoire que les fichiers source)
+:load Akinator.scala
+:load Main.scala
+Main.main(Array())
