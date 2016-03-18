@@ -121,7 +121,7 @@ def fichierToABanimal(nomf:String):ABanimal = {
 					val nAnimal = it.next()
 					println("Quelle question permet de différencier "+nAnimal+" et "+t+" ?")
 					val nQuestion = it.next()
-					println("Quelle est la réponse pour cette question pour "+nAnimal+" ?")
+					println("Quelle est la réponse à cette question pour "+nAnimal+" ?")
 					def boucleVerif(res:String):String = res match {
 					  case ret if (res.equals("o")||res.equals("n")) => ret
 					  case _ => {
@@ -172,32 +172,5 @@ def fichierToABanimal(nomf:String):ABanimal = {
 			}
 			aux(a)
 	}
-
-
-
-	def main(args : Array[String]){
-		try {
-			//println(fichierToABanimal("Source"))
-			//ABanimalToFichier("Destination",fichierToABanimal("Source"))
-			//val rep = jeuSimple(fichierToABanimal("Source"),Source.stdin.getLines)
-			//if (rep) println("J'ai gagné")
-			//else println("J'ai perdu")
-			//val lRep = jeuLog(fichierToABanimal("Source"),Source.stdin.getLines)
-			//if (lRep.last.equals("o")) println("J'ai gagné")
-			//else println("J'ai perdu")
-			//println(lRep)
-			val animalRep = jeuApprentissage(fichierToABanimal("Destination2"),Source.stdin.getLines())
-					println(animalRep)
-					ABanimalToFichier("Destination2",animalRep)
-					//val repJNSP = jeuSimpleJNSP(fichierToABanimal("Source"),Source.stdin.getLines)
-					//if (repJNSP) println("J'ai gagné")
-					//else println("J'ai perdu")
-		} catch {
-		case ex: Exception => {
-			println(ex.getMessage)
-		}
-		}
-	}
-
 }
 
